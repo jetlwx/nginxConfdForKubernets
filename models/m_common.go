@@ -13,7 +13,7 @@ var (
 	Logson   = beego.AppConfig.String("logs")
 )
 
-//
+/////
 //error type to string，方便重定向输出
 func CustomerErr(err error) string {
 	if err != nil {

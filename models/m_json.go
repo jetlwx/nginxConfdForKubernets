@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-//get the json data  https or http
+////get the json data  https or http
 func GetjsonData(url string) (HttpStatusCode int, res []byte, er error) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -28,7 +28,6 @@ func GetjsonData(url string) (HttpStatusCode int, res []byte, er error) {
 		client := &http.Client{Transport: tr}
 		resp, err := client.Get(url)
 		if err != nil {
-			//	Writelog("E", "get url "+url+" error at "+CustomerErr(err))
 			er = err
 			return 500, []byte(""), er
 		}
@@ -39,19 +38,16 @@ func GetjsonData(url string) (HttpStatusCode int, res []byte, er error) {
 		if HttpStatusCode == 200 {
 			body, err := ioutil.ReadAll(resp.Body)
 			if err != nil {
-				//	Writelog("E", "get https stream error at :"+CustomerErr(err))
 				er = err
 				return 500, []byte(""), er
 			}
 			res = body
-			//	Writelog("D", "get https stream :"+string(body))
 		}
 		return HttpStatusCode, res, nil
 
 	case "http":
 		resp, err := http.Get(url)
 		if err != nil {
-			//	Writelog("E", "get url "+url+" error at "+CustomerErr(err))
 			return 500, []byte(""), err
 		}
 		Writelog("D", "get url"+url)
@@ -61,14 +57,10 @@ func GetjsonData(url string) (HttpStatusCode int, res []byte, er error) {
 		if HttpStatusCode == 200 {
 			body, err := ioutil.ReadAll(resp.Body)
 			if err != nil {
-				//	Writelog("E", "get http stream error at :"+CustomerErr(err))
 				return 500, []byte(""), err
 			}
 			res = body
-			//	Writelog("D", "get https stream :"+string(res))
-
 		}
-
 	}
 	return HttpStatusCode, res, nil
 

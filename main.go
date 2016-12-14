@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+//
 func main() {
 	log.Println("[D] reading conf from conf file")
 	conffile := beego.AppConfig.String("nginxConfFile")
@@ -24,7 +25,7 @@ func main() {
 
 	urls := models.GetendpointsList(apiserver, list)
 	log.Println("[D] Get the endpoints list:", urls)
-
+	// prepare for period
 	for {
 		fresh, err := strconv.ParseInt(freshSeconds, 10, 64)
 		if err != nil {

@@ -9,6 +9,7 @@ import (
 	"text/template"
 )
 
+//
 type Data1 struct {
 	Service string
 	Addr    []string
