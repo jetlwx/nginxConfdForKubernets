@@ -33,9 +33,11 @@ http {
 
 stream {
 #### service 1 eg: service name redis1################
+#the $index value must be equal to e service name ,eg:redis1
 {{range $index ,$value := .}}
 {{if eq $index "redis1" }}
 
+#upstream name must eq to the proxy_pass value at the server section.
      upstream redis1 {
      hash $remote_addr consistent;
 {{range $value}}
@@ -46,6 +48,7 @@ server {
      listen 2014;
      proxy_connect_timeout 3s;
      proxy_timeout 3s;
+#edit the redis1 to what you want 
      proxy_pass redis1;
 
 }
